@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.junqueirademiranda.com.br/sitemap.xml

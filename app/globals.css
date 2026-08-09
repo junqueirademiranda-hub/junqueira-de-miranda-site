@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+:root { --navy:#142a3d; --navy-deep:#0e2030; --gold:#b58a3a; --graphite:#3e464f; --light:#f2f2f2; --white:#fff; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:#fff; color:var(--graphite); font-family:"Inter",sans-serif; overflow-x:hidden; }
+a { color:inherit; text-decoration:none; }
+button { color:inherit; font:inherit; }
+section[id] { scroll-margin-top:168px; }
+.site-header { height:168px; padding:0 5.5vw; display:flex; align-items:center; gap:38px; justify-content:space-between; background:#fff; border-bottom:1px solid #e7e7e7; position:relative; z-index:10; }
+.brand { height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--navy); }
+.brand-logo { width:280px; height:160px; display:block; object-fit:cover; object-position:center 51%; }
+.brand-oab { margin-top:-16px; color:var(--navy); font-size:9px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
+nav { display:flex; gap:34px; font-size:13px; color:var(--navy); }
+nav a { padding:8px 0; border-bottom:1px solid transparent; }
+nav a:hover { border-color:var(--gold); }
+.header-cta { padding:13px 20px; border:1px solid var(--gold); color:var(--navy); font-size:12px; text-transform:uppercase; letter-spacing:.1em; }
+.header-cta,.button,.service-contact,.contact-email,.floating-contact { transition:transform .25s ease,filter .25s ease,border-color .25s ease,background-color .25s ease; cursor:pointer; }
+.header-cta:hover { background:var(--gold); color:#fff; }
+.hero { min-height:760px; display:grid; grid-template-columns:54% 46%; background:linear-gradient(110deg,#fff 0%,#f5f4f1 54%,#142a3d 54%); overflow:hidden; }
+.hero-copy { padding:120px 7vw 70px; position:relative; z-index:2; }
+.eyebrow { margin:0 0 22px; color:var(--gold); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
+.eyebrow:after { content:""; width:35px; height:1px; display:inline-block; background:currentColor; vertical-align:middle; margin-left:14px; }
+h1,h2,h3,p { margin-top:0; }
+h1,h2 { font-family:"Cormorant Garamond",serif; font-weight:500; color:var(--navy); }
+h1 { font-size:clamp(54px,5.25vw,82px); line-height:.98; letter-spacing:-.035em; max-width:790px; margin-bottom:28px; }
+h1 em { color:var(--gold); font-weight:500; }
+.hero-text { max-width:600px; font-size:16px; line-height:1.85; color:#5b6268; }
+.hero-actions { display:flex; align-items:center; gap:30px; margin:38px 0 62px; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 28px; text-transform:uppercase; letter-spacing:.12em; font-size:11px; font-weight:600; }
+.button-gold { background:var(--gold); color:#fff; }
+.button:hover { transform:translateY(-2px); filter:brightness(1.07); }
+.text-link { color:var(--navy); font-size:12px; text-transform:uppercase; letter-spacing:.1em; }
+.text-link span { color:var(--gold); font-size:18px; margin-left:8px; }
+.hero-proof { display:flex; flex-wrap:wrap; gap:24px; color:var(--navy); font:500 14px "Cormorant Garamond",serif; }
+.hero-proof span { padding-left:14px; border-left:1px solid var(--gold); }
+.hero-photo { background-color:var(--navy-deep); background-image:linear-gradient(90deg,rgba(20,42,61,.12),rgba(20,42,61,0)),url('/images/retrato-advogada.png'); background-size:auto 100%; background-repeat:no-repeat; background-position:center bottom; min-height:760px; }
+.intro { padding:110px 7vw; display:grid; grid-template-columns:1fr 1fr; gap:9vw; align-items:start; }
+.intro h2,.section-heading h2,.values h2,.contact h2 { font-size:clamp(42px,4vw,62px); line-height:1.08; margin:0; }
+.intro-copy { font-size:15px; line-height:1.9; max-width:590px; padding-top:30px; }
+.intro-copy p:first-child { font-size:18px; color:var(--navy); }
+.practice { background:var(--navy); color:#fff; padding:105px 7vw 115px; }
+.light { color:#d3b06e; }
+.section-heading { display:grid; grid-template-columns:1fr 1.8fr; gap:50px; align-items:start; margin-bottom:65px; }
+.section-heading h2 { color:#fff; max-width:760px; }
+.service-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(255,255,255,.18); }
+.service-card { padding:42px 30px 30px 0; min-height:320px; border-right:1px solid rgba(255,255,255,.18); }
+.service-card + .service-card { padding-left:30px; }
+.service-card:last-child { border-right:0; }
+.service-card>span { color:var(--gold); font:500 14px "Cormorant Garamond",serif; }
+.service-card h3 { margin:48px 0 18px; color:#fff; font:500 28px "Cormorant Garamond",serif; }
+.service-card p { color:#c7ced3; font-size:13px; line-height:1.75; min-height:100px; }
+.service-contact { padding:0; border:0; background:transparent; color:#d3b06e; text-transform:uppercase; letter-spacing:.12em; font-size:10px; }
+.values { display:grid; grid-template-columns:1fr 1fr; min-height:760px; }
+.values-image { background:linear-gradient(180deg,rgba(14,32,48,.25),rgba(14,32,48,.8)),url('/images/retrato-advogada.png') center 25%/cover; position:relative; }
+.quote { position:absolute; left:7vw; right:4vw; bottom:62px; padding:32px; background:rgba(14,32,48,.86); border-left:2px solid var(--gold); color:#fff; }
+.quote span { color:var(--gold); font:70px/0.6 Georgia,serif; }
+.quote p { font:500 29px/1.28 "Cormorant Garamond",serif; max-width:510px; }
+.values-copy { padding:110px 7vw; background:#f6f6f4; }
+.value-list { margin-top:55px; }
+.value-item { display:flex; gap:20px; padding:22px 0; border-top:1px solid #d8d9d8; }
+.value-item>span { color:var(--gold); font-size:25px; }
+.value-item h3 { color:var(--navy); font:600 22px "Cormorant Garamond",serif; margin:0 0 5px; }
+.value-item p { font-size:13px; line-height:1.6; margin:0; }
+.contact { text-align:center; padding:115px 20px; background:var(--navy-deep); color:#dfe4e7; }
+.contact h2 { color:#fff; max-width:800px; margin:0 auto 24px; }
+.contact>p:not(.eyebrow) { max-width:620px; margin:0 auto 36px; font-size:15px; line-height:1.8; }
+.button-light { border:1px solid var(--gold); color:#fff; }
+.contact-email { display:block; width:max-content; max-width:100%; margin:24px auto 0; color:#d9c18e; font-size:13px; letter-spacing:.04em; border-bottom:1px solid transparent; }
+.contact-email:hover { border-color:currentColor; }
+footer { min-height:175px; padding:30px 6vw; display:grid; grid-template-columns:1fr 1fr 1fr; align-items:center; gap:30px; font-size:11px; color:#777; }
+.footer-brand { justify-self:start; display:flex; flex-direction:column; align-items:center; gap:5px; color:var(--navy); }
+.footer-logo { display:block; width:200px; height:122px; object-fit:cover; object-position:center 51%; }
+.footer-brand span { color:var(--navy); font-size:8px; font-weight:600; letter-spacing:.2em; }
+footer p { margin:0; line-height:1.7; }
+footer p:last-child { justify-self:end; }
+.floating-contact { position:fixed; right:24px; bottom:24px; z-index:30; min-height:48px; padding:0 18px; display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#fff; box-shadow:0 12px 30px rgba(14,32,48,.28); font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+.floating-contact span { font-size:17px; line-height:1; }
+.floating-contact:hover { transform:translateY(-2px); filter:brightness(1.06); }
+.landing-header { position:relative; }
+.landing-home-link { margin-left:auto; color:var(--navy); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+.landing-home-link span { margin-left:7px; color:var(--gold); font-size:16px; }
+.landing-hero-note { max-width:620px; padding-left:18px; border-left:1px solid var(--gold); color:#626a70; font-size:13px; line-height:1.75; }
+.landing-hero .hero-actions { margin-bottom:46px; }
+.landing-intro { align-items:center; }
+.situation-list { border-top:1px solid #d8d9d8; }
+.situation-list p { display:flex; gap:15px; margin:0; padding:17px 0; border-bottom:1px solid #d8d9d8; color:var(--navy); font-size:14px; line-height:1.55; }
+.situation-list span { color:var(--gold); font-size:20px; }
+.landing-explainer { display:grid; grid-template-columns:1fr 1fr; gap:9vw; padding:105px 7vw; background:var(--navy-deep); color:#dfe4e7; }
+.landing-explainer h2 { max-width:650px; margin:0; color:#fff; font-size:clamp(42px,4vw,62px); line-height:1.08; }
+.landing-explainer-copy { padding-top:26px; font-size:15px; line-height:1.9; }
+.landing-explainer-copy p:first-child { color:#fff; font-size:18px; }
+.landing-practice { background:var(--navy); }
+.landing-audience { display:grid; grid-template-columns:1fr 1fr; min-height:730px; background:#f6f6f4; }
+.landing-audience-image { min-height:650px; background:linear-gradient(180deg,rgba(14,32,48,.08),rgba(14,32,48,.62)),url('/images/retrato-advogada.png') center 25%/cover; }
+.landing-audience-copy { padding:100px 7vw; }
+.landing-audience-copy h2,.landing-documents h2 { margin:0 0 28px; color:var(--navy); font:500 clamp(42px,4vw,62px)/1.08 "Cormorant Garamond",serif; }
+.landing-audience-copy>p { font-size:14px; line-height:1.85; }
+.landing-audience-copy ul { margin:28px 0; padding:0; list-style:none; border-top:1px solid #d8d9d8; }
+.landing-audience-copy li { padding:13px 0 13px 20px; border-bottom:1px solid #d8d9d8; color:var(--navy); font-size:13px; position:relative; }
+.landing-audience-copy li:before { content:"◇"; position:absolute; left:0; color:var(--gold); }
+.landing-caution { padding:17px 19px; border-left:2px solid var(--gold); background:#fff; }
+.landing-documents { display:grid; grid-template-columns:1fr 1fr; gap:9vw; padding:105px 7vw; align-items:start; }
+.landing-documents>div>p:last-child { color:#737a80; font-size:13px; }
+.document-list { border-top:1px solid #d8d9d8; }
+.document-list p { display:grid; grid-template-columns:50px 1fr; align-items:center; margin:0; padding:18px 0; border-bottom:1px solid #d8d9d8; color:var(--navy); font-size:13px; }
+.document-list span { color:var(--gold); font:500 14px "Cormorant Garamond",serif; }
+.landing-office-link { display:block; width:max-content; max-width:100%; margin:28px auto 0; color:#d9c18e; font-size:11px; letter-spacing:.08em; text-transform:uppercase; border-bottom:1px solid transparent; }
+.landing-office-link:hover { border-color:currentColor; }
+.compact-hero { min-height:620px; }
+.compact-hero .hero-copy { padding-top:82px; padding-bottom:58px; }
+.compact-hero h1 { font-size:clamp(50px,4.6vw,72px); }
+.compact-hero .hero-photo { min-height:620px; }
+.compact-hero .hero-actions { margin:30px 0 42px; }
+.compact-situations { padding:78px 7vw 84px; }
+.compact-heading { display:grid; grid-template-columns:1fr 1.8fr; gap:50px; align-items:start; margin-bottom:42px; }
+.compact-heading h2,.compact-info-main h2,.compact-office-card h2 { margin:0; color:var(--navy); font:500 clamp(36px,3.2vw,52px)/1.08 "Cormorant Garamond",serif; }
+.compact-card-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid #d8d9d8; }
+.compact-card { min-height:205px; padding:28px 26px 20px 0; border-right:1px solid #d8d9d8; }
+.compact-card + .compact-card { padding-left:26px; }
+.compact-card:last-child { border-right:0; }
+.compact-card>span { color:var(--gold); font:500 13px "Cormorant Garamond",serif; }
+.compact-card h3 { margin:24px 0 10px; color:var(--navy); font:500 25px "Cormorant Garamond",serif; }
+.compact-card p { margin:0; color:#687077; font-size:12px; line-height:1.65; }
+.compact-information { display:grid; grid-template-columns:1.35fr .85fr; gap:7vw; padding:82px 7vw; background:var(--navy-deep); color:#dfe4e7; }
+.compact-info-main h2 { max-width:680px; color:#fff; }
+.compact-info-main>p:not(.eyebrow) { max-width:760px; margin:24px 0 0; font-size:14px; line-height:1.8; }
+.compact-office-card { padding:38px; background:#fff; color:#626a70; border-top:3px solid var(--gold); }
+.compact-office-card h2 { font-size:36px; }
+.compact-office-card>p:not(.eyebrow) { margin:20px 0; font-size:13px; line-height:1.75; }
+.compact-office-card strong { display:block; margin-bottom:24px; color:var(--navy); font-size:11px; letter-spacing:.15em; }
+.compact-contact { padding:82px 20px; }
+.compact-contact h2 { font-size:clamp(40px,3.6vw,56px); }
+.compact-footer { min-height:150px; }
+.fraud-screening-section { display:grid; grid-template-columns:.85fr 1.15fr; gap:7vw; padding:82px 7vw; background:var(--navy-deep); color:#dfe4e7; scroll-margin-top:24px; }
+.fraud-screening-copy h2,.fraud-screening-card>h2 { margin:0 0 24px; font:500 clamp(38px,3.4vw,54px)/1.08 "Cormorant Garamond",serif; }
+.fraud-screening-copy h2 { color:#fff; }
+.fraud-screening-copy>p:not(.eyebrow):not(.fraud-office-signature) { font-size:14px; line-height:1.85; }
+.fraud-action-note { margin:32px 0; padding:22px; border-left:2px solid var(--gold); background:rgba(255,255,255,.07); }
+.fraud-action-note strong { color:#d9c18e; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+.fraud-action-note p { margin:10px 0 0; font-size:12px; line-height:1.75; }
+.fraud-office-signature { margin-top:34px; color:#fff; font:500 23px/1.3 "Cormorant Garamond",serif; }
+.fraud-office-signature span { color:#d9c18e; font:600 9px "Inter",sans-serif; letter-spacing:.18em; }
+.fraud-screening-card { padding:40px; background:#fff; color:#626a70; border-top:3px solid var(--gold); }
+.fraud-screening-card>h2 { color:var(--navy); font-size:38px; }
+.fraud-screening-form { display:grid; gap:17px; }
+.fraud-screening-form label { display:grid; gap:7px; color:var(--navy); font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+.fraud-screening-form input,.fraud-screening-form select,.fraud-screening-form textarea { width:100%; border:1px solid #cfd3d5; border-radius:0; background:#fff; color:#30383e; font:400 13px "Inter",sans-serif; letter-spacing:0; text-transform:none; outline:none; }
+.fraud-screening-form input,.fraud-screening-form select { height:46px; padding:0 12px; }
+.fraud-screening-form textarea { min-height:100px; padding:12px; resize:vertical; }
+.fraud-screening-form input:focus,.fraud-screening-form select:focus,.fraud-screening-form textarea:focus { border-color:var(--gold); box-shadow:0 0 0 2px rgba(181,138,58,.16); }
+.screening-field-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.screening-security-note { display:grid; gap:4px; padding:13px 15px; border-left:2px solid var(--gold); background:#f5f3ee; color:#626a70; font-size:10px; line-height:1.55; }
+.screening-security-note strong { color:var(--navy); }
+.screening-submit { width:100%; border:0; }
+.screening-disclaimer { margin:0; color:#777; font-size:9px; line-height:1.55; text-align:center; }
+.screening-consent { display:grid !important; grid-template-columns:18px 1fr; align-items:start; gap:10px !important; color:#626a70 !important; font-size:10px !important; font-weight:400 !important; line-height:1.55; letter-spacing:0 !important; text-transform:none !important; }
+.screening-consent input { width:16px !important; height:16px !important; margin:1px 0 0; accent-color:var(--gold); }
+.campaign-location { margin-left:auto; color:var(--navy); font-size:10px; font-weight:600; letter-spacing:.1em; text-align:center; text-transform:uppercase; }
+.account-explainer { display:grid; grid-template-columns:1fr 1fr; gap:8vw; padding:88px 7vw; background:var(--navy-deep); color:#dfe4e7; }
+.account-explainer h2 { margin:0 0 24px; color:#fff; font:500 clamp(40px,3.8vw,58px)/1.06 "Cormorant Garamond",serif; }
+.account-explainer>div>p:not(.eyebrow) { font-size:14px; line-height:1.85; }
+.account-guidance { padding:34px; background:#fff; color:#626a70; border-top:3px solid var(--gold); }
+.account-guidance>p:not(.eyebrow) { display:flex; gap:13px; margin:0; padding:14px 0; border-bottom:1px solid #e0e1e1; color:var(--navy); font-size:12px; line-height:1.55; }
+.account-guidance>p:last-child { border-bottom:0; }
+.account-guidance span { color:var(--gold); font-size:18px; }
+.fraud-final-note { padding-top:70px; padding-bottom:70px; }
+.contact-modal-backdrop { position:fixed; inset:0; z-index:100; display:grid; place-items:center; padding:24px; background:rgba(7,18,27,.72); backdrop-filter:blur(5px); }
+.contact-modal { position:relative; width:min(560px,100%); max-height:calc(100vh - 48px); overflow:auto; padding:46px; background:#fff; box-shadow:0 28px 80px rgba(0,0,0,.28); }
+.contact-modal h2 { margin:0 0 14px; color:var(--navy); font:500 42px/1.05 "Cormorant Garamond",serif; }
+.contact-modal-intro { margin-bottom:28px; color:#626a70; font-size:13px; line-height:1.7; }
+.contact-modal-close { position:absolute; top:17px; right:20px; padding:4px 8px; border:0; background:transparent; color:var(--navy); font-size:28px; line-height:1; cursor:pointer; }
+.contact-modal form { display:grid; gap:18px; }
+.contact-modal label { display:grid; gap:8px; color:var(--navy); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+.contact-modal input,.contact-modal select,.contact-modal textarea { width:100%; border:1px solid #cfd3d5; border-radius:0; background:#fff; color:#30383e; font:400 14px "Inter",sans-serif; letter-spacing:0; text-transform:none; outline:none; }
+.contact-modal input,.contact-modal select { height:48px; padding:0 14px; }
+.contact-modal textarea { min-height:112px; padding:13px 14px; resize:vertical; }
+.contact-modal input:focus,.contact-modal select:focus,.contact-modal textarea:focus { border-color:var(--gold); box-shadow:0 0 0 2px rgba(181,138,58,.16); }
+.contact-attachment-note { display:grid; gap:5px; padding:14px 16px; border-left:2px solid var(--gold); background:#f5f3ee; color:#5e656a; font-size:11px; line-height:1.55; }
+.contact-attachment-note strong { color:var(--navy); font-size:11px; }
+.contact-submit { width:100%; border:0; margin-top:4px; }
+.contact-privacy { margin:0; color:#777; font-size:10px; line-height:1.5; text-align:center; }
+a:focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
+
+.campaign-v2 { background:#fff; color:var(--graphite); }
+.campaign-v2 h2 { margin:0; color:var(--navy); font:500 clamp(40px,4vw,62px)/1.06 "Cormorant Garamond",serif; }
+.campaign-v2-header { min-height:120px; padding:10px 6vw; display:flex; align-items:center; gap:18px; border-bottom:1px solid #e6e2d9; background:#fff; }
+.campaign-v2-header img { width:190px; height:96px; object-fit:contain; object-position:center; }
+.campaign-v2-header span { margin-left:0; color:var(--navy); font-size:9px; font-weight:600; letter-spacing:.14em; white-space:nowrap; }
+.campaign-v2-header a { margin-left:auto; padding:14px 20px; border:1px solid var(--gold); color:var(--navy); font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+.campaign-v2-hero { min-height:700px; display:grid; grid-template-columns:58% 42%; background:var(--navy-deep); }
+.campaign-v2-hero-copy { padding:86px 7vw; color:#e6eaec; }
+.campaign-v2-hero h1 { max-width:800px; color:#fff; font-size:clamp(52px,5vw,78px); }
+.campaign-v2-hero-copy>p:not(.eyebrow) { max-width:680px; font-size:17px; line-height:1.75; }
+.campaign-v2-hero-copy>strong { display:block; max-width:650px; margin:26px 0; padding-left:18px; border-left:2px solid var(--gold); color:#d9c18e; font:500 20px/1.45 "Cormorant Garamond",serif; }
+.campaign-v2-hero-copy .campaign-v2-hero-warning { max-width:650px; margin:0 0 26px; color:#fff; font-weight:600; line-height:1.6; }
+.campaign-v2-hero-copy small,.campaign-v2-lawyer small,.campaign-v2-final small { display:block; margin-top:24px; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+.campaign-v2-hero-image { min-height:700px; background:linear-gradient(180deg,rgba(14,32,48,.02),rgba(14,32,48,.48)),url('/images/hero-conta-golpe-v2.png') center 28%/cover no-repeat; }
+.campaign-v2-situations { padding:95px 7vw; display:grid; grid-template-columns:.8fr 1.2fr; gap:8vw; }
+.campaign-v2-situations ul,.campaign-v2-guidance ul { margin:0; padding:0; list-style:none; border-top:1px solid #d8d9d8; }
+.campaign-v2-situations li,.campaign-v2-guidance li { display:flex; gap:14px; padding:17px 0; border-bottom:1px solid #d8d9d8; color:var(--navy); font-size:14px; line-height:1.55; }
+.campaign-v2-situations li span,.campaign-v2-guidance li span { color:var(--gold); font-size:20px; }
+.campaign-v2-explanation { padding:95px 7vw; display:grid; grid-template-columns:1fr 1fr; gap:9vw; background:#f4f2ed; }
+.campaign-v2-explanation>div:last-child { padding-top:28px; font-size:15px; line-height:1.85; }
+.campaign-v2-explanation .button { margin-top:20px; }
+.campaign-v2-guidance { display:grid; grid-template-columns:42% 58%; min-height:660px; }
+.campaign-v2-guidance-image { background:linear-gradient(180deg,rgba(14,32,48,.3),rgba(14,32,48,.65)),url('/images/retrato-advogada.png') center 26%/cover no-repeat; filter:saturate(.65); }
+.campaign-v2-guidance>div:last-child { padding:100px 8vw; }
+.campaign-v2-guidance ul { margin-top:36px; }
+.campaign-v2-lawyer { display:grid; grid-template-columns:44% 56%; min-height:700px; background:var(--navy); color:#dfe4e7; }
+.campaign-v2-lawyer-photo { background:url('/images/retrato-advogada.png') center 24%/cover no-repeat; }
+.campaign-v2-lawyer>div:last-child { padding:100px 8vw; }
+.campaign-v2-lawyer h2 { color:#fff; }
+.campaign-v2-lawyer p:not(.eyebrow) { margin-top:24px; font-size:14px; line-height:1.85; }
+.campaign-v2-lawyer strong { display:block; margin-top:32px; color:#fff; font:500 24px/1.35 "Cormorant Garamond",serif; }
+.campaign-v2-lawyer strong span { color:#d9c18e; font:600 9px "Inter",sans-serif; letter-spacing:.17em; }
+.campaign-v2-form { padding:95px 7vw; display:grid; grid-template-columns:.8fr 1.2fr; gap:7vw; background:var(--navy-deep); color:#dfe4e7; }
+.campaign-v2-form h2 { color:#fff; }
+.campaign-v2-form>div:first-child>p:not(.eyebrow) { margin-top:26px; font-size:14px; line-height:1.8; }
+.campaign-v2-final { padding:100px 20px; text-align:center; background:#f4f2ed; }
+.campaign-v2-final h2 { max-width:900px; margin:auto; }
+.campaign-v2-final>p:not(.eyebrow) { margin:24px auto 30px; }
+.campaign-v2-final small { max-width:700px; margin:28px auto 0; color:#737a80; line-height:1.6; }
+.campaign-v2-footer { min-height:155px; padding:20px 6vw; display:grid; grid-template-columns:230px 1fr 1fr; align-items:center; color:#777; font-size:10px; }
+.campaign-v2-footer img { width:180px; height:105px; object-fit:contain; object-position:center; }
+.campaign-v2-footer>span { color:var(--navy); font-size:8px; letter-spacing:.17em; }
+.campaign-v2-footer p { justify-self:end; margin:0; }
+
+@media (max-width:1000px) {
+  nav { display:none; }
+  .hero { grid-template-columns:1fr; background:#f5f4f1; }
+  .hero-copy { padding:80px 7vw 60px; }
+  .hero-photo { min-height:620px; background-size:auto 100%; background-position:center bottom; }
+  .intro,.values { grid-template-columns:1fr; }
+  .service-grid { grid-template-columns:1fr 1fr; }
+  .service-card:nth-child(2) { border-right:0; }
+  .section-heading { grid-template-columns:1fr; }
+  .landing-explainer,.landing-audience,.landing-documents { grid-template-columns:1fr; }
+  .landing-audience-image { min-height:620px; }
+  .compact-heading,.compact-information { grid-template-columns:1fr; }
+  .fraud-screening-section { grid-template-columns:1fr; }
+  .account-explainer { grid-template-columns:1fr; }
+  .compact-card-grid { grid-template-columns:1fr 1fr; }
+  .compact-card:nth-child(2) { border-right:0; }
+  .campaign-v2-hero,.campaign-v2-situations,.campaign-v2-explanation,.campaign-v2-guidance,.campaign-v2-lawyer,.campaign-v2-form { grid-template-columns:1fr; }
+  .campaign-v2-hero-image,.campaign-v2-guidance-image,.campaign-v2-lawyer-photo { min-height:580px; }
+}
+@media (max-width:650px) {
+  section[id] { scroll-margin-top:132px; }
+  .site-header { height:132px; padding:0 18px; }
+  .brand-logo { width:220px; height:126px; }
+  .brand-oab { margin-top:-12px; font-size:8px; }
+  .header-cta { display:none; }
+  .landing-home-link { font-size:9px; text-align:right; }
+  .campaign-location { max-width:145px; margin-left:auto; font-size:8px; line-height:1.45; }
+  .hero { min-height:auto; }
+  .hero-copy { padding:70px 24px 45px; }
+  h1 { font-size:49px; }
+  .hero-actions { align-items:flex-start; flex-direction:column; margin-bottom:44px; }
+  .hero-proof { flex-direction:column; gap:12px; }
+  .hero-photo { min-height:540px; background-size:auto 100%; background-position:center bottom; }
+  .intro,.practice,.values-copy { padding:76px 24px; }
+  .landing-explainer,.landing-audience-copy,.landing-documents { padding:76px 24px; }
+  .compact-hero .hero-copy { padding:54px 24px 38px; }
+  .compact-hero h1 { font-size:45px; }
+  .compact-hero .hero-photo { min-height:360px; background-size:auto 100%; }
+  .compact-situations,.compact-information { padding:58px 24px; }
+  .compact-heading { gap:18px; margin-bottom:28px; }
+  .compact-card-grid { grid-template-columns:1fr; }
+  .compact-card,.compact-card + .compact-card { min-height:0; padding:24px 0; border-right:0; border-bottom:1px solid #d8d9d8; }
+  .compact-card h3 { margin-top:14px; }
+  .compact-office-card { padding:30px 24px; }
+  .compact-contact { padding:64px 24px; }
+  .fraud-screening-section { padding:58px 24px; }
+  .account-explainer { padding:58px 24px; }
+  .fraud-screening-card { padding:30px 22px; }
+  .screening-field-row { grid-template-columns:1fr; }
+  .intro { gap:35px; }
+  .service-grid { grid-template-columns:1fr; }
+  .service-card,.service-card + .service-card { border-right:0; padding:34px 0; border-bottom:1px solid rgba(255,255,255,.18); min-height:0; }
+  .service-card h3 { margin-top:25px; }
+  .service-card p { min-height:0; }
+  .values-image { min-height:590px; }
+  .quote { left:24px; right:24px; bottom:24px; }
+  .quote p { font-size:24px; }
+  footer { grid-template-columns:1fr; text-align:center; padding-bottom:96px; }
+  .footer-brand,footer p:last-child { justify-self:center; }
+  .floating-contact { right:16px; bottom:16px; }
+  .contact-modal-backdrop { padding:12px; }
+  .contact-modal { max-height:calc(100vh - 24px); padding:38px 22px 26px; }
+  .contact-modal h2 { font-size:36px; }
+  .campaign-v2-header { min-height:105px; padding:6px 18px; }
+  .campaign-v2-header img { width:155px; height:84px; }
+  .campaign-v2-header span { margin-left:0; font-size:7px; }
+  .campaign-v2-header a { display:none; }
+  .campaign-v2-hero-copy { padding:58px 24px 50px; }
+  .campaign-v2-hero h1 { font-size:46px; }
+  .campaign-v2-hero-image { min-height:390px; }
+  .campaign-v2-situations,.campaign-v2-explanation,.campaign-v2-form { padding:68px 24px; }
+  .campaign-v2-guidance>div:last-child,.campaign-v2-lawyer>div:last-child { padding:70px 24px; }
+  .campaign-v2-guidance-image,.campaign-v2-lawyer-photo { min-height:460px; }
+  .campaign-v2-final { padding:72px 24px; }
+  .campaign-v2-footer { grid-template-columns:1fr; justify-items:center; text-align:center; padding-bottom:95px; }
+  .campaign-v2-footer p { justify-self:center; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { transition-duration:.01ms !important; }
+}
