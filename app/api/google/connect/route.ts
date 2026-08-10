@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   await database.prepare("INSERT INTO google_oauth_state (state, expires_at) VALUES (?, ?)").bind(state, Date.now() + 10 * 60 * 1000).run();
   const url = new URL("https://accounts.google.com/o/oauth2/v2/auth");
   url.searchParams.set("client_id", config.client_id);
-  url.searchParams.set("redirect_uri", redirectUri);
+  url.searchParams.set("redirect_uri", await redirectUri());
   url.searchParams.set("response_type", "code");
   url.searchParams.set("scope", "https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/userinfo.email");
   url.searchParams.set("access_type", "offline");
