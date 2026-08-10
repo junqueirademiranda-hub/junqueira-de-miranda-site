@@ -8,13 +8,14 @@ export async function GET(request: Request) {
   const state = url.searchParams.get("state");
   if (!code || !state) return new Response("Autorização incompleta.", { status: 400 });
   const database = await db();
+  const callbackUri = await redirectUri();
   const adminState = await database.prepare("SELECT expires_at FROM admin_oauth_state WHERE state=?").bind(state).first<{ expires_at: number }>();
   if (adminState) {
     await database.prepare("DELETE FROM admin_oauth_state WHERE state=?").bind(state).run();
     if (adminState.expires_at < Date.now()) return new Response("Autorização expirada. Tente novamente.", { status: 400 });
     const config = await database.prepare("SELECT client_id, client_secret_encrypted FROM google_drive_config WHERE id=1").first<{ client_id: string; client_secret_encrypted: string }>();
     if (!config) return new Response("Credencial Google ausente.", { status: 503 });
-    const tokenResponse = await fetch("https://oauth2.googleapis.com/token", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ code, client_id: config.client_id, client_secret: await decrypt(config.client_secret_encrypted), redirect_uri: redirectUri, grant_type: "authorization_code" }) });
+    const tokenResponse = await fetch("https://oauth2.googleapis.com/token", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ code, client_id: config.client_id, client_secret: await decrypt(config.client_secret_encrypted), redirect_uri: callbackUri, grant_type: "authorization_code" }) });
     const token = await tokenResponse.json() as { access_token?: string; error_description?: string };
     if (!tokenResponse.ok || !token.access_token) return new Response(token.error_description || "Não foi possível entrar com o Google.", { status: 400 });
     const userResponse = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", { headers: { authorization: `Bearer ${token.access_token}` } });
@@ -34,7 +35,7 @@ export async function GET(request: Request) {
   const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ code, client_id: config.client_id, client_secret: await decrypt(config.client_secret_encrypted), redirect_uri: redirectUri, grant_type: "authorization_code" }),
+    body: new URLSearchParams({ code, client_id: config.client_id, client_secret: await decrypt(config.client_secret_encrypted), redirect_uri: callbackUri, grant_type: "authorization_code" }),
   });
   const token = await tokenResponse.json() as { access_token?: string; refresh_token?: string; error_description?: string };
   if (!tokenResponse.ok || !token.access_token || !token.refresh_token) return new Response(token.error_description || "Não foi possível concluir a autorização.", { status: 400 });

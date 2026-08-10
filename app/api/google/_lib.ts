@@ -66,6 +66,27 @@ export async function ensureTables() {
   ]);
 }
 
+export async function ensureGoogleClientConfig() {
+  await ensureTables();
+  const database = await db();
+  const existing = await database.prepare("SELECT client_id, client_secret_encrypted FROM google_drive_config WHERE id=1").first<{ client_id: string; client_secret_encrypted: string }>();
+  if (existing?.client_id && existing.client_secret_encrypted) return existing;
+
+  const { env } = await import("cloudflare:workers");
+  const clientId = String(env.GOOGLE_CLIENT_ID || "").trim();
+  const clientSecret = String(env.GOOGLE_CLIENT_SECRET || "").trim();
+  if (!clientId.endsWith(".apps.googleusercontent.com") || !clientSecret) return null;
+
+  const encryptedSecret = await encrypt(clientSecret);
+  await database.prepare(`INSERT INTO google_drive_config
+    (id, client_id, client_secret_encrypted, updated_at) VALUES (1, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET client_id=excluded.client_id,
+    client_secret_encrypted=excluded.client_secret_encrypted,
+    updated_at=excluded.updated_at`)
+    .bind(clientId, encryptedSecret, new Date().toISOString()).run();
+  return { client_id: clientId, client_secret_encrypted: encryptedSecret };
+}
+
 export async function isAdmin(request: Request) {
   const { env } = await import("cloudflare:workers");
   const session = await readAdminSession(cookieValue(request, "portal_admin"), String(env.GOOGLE_CONFIG_ENCRYPTION_KEY || ""));
@@ -74,7 +95,10 @@ export async function isAdmin(request: Request) {
   return Boolean(email && allowed.includes(email));
 }
 
-export const redirectUri = "https://junqueirademiranda.com.br/api/google/callback";
+export async function redirectUri() {
+  const { env } = await import("cloudflare:workers");
+  return String(env.GOOGLE_REDIRECT_URI || "https://junqueirademiranda.com.br/api/google/callback");
+}
 
 export type DriveConfig = {
   client_id: string;
