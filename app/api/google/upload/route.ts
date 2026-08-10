@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   if (!await isAdmin(request)) return Response.json({ error: "Acesso não autorizado." }, { status: 403 });
   const form = await request.formData();
   const file = form.get("file");
-  const clientName = safeName(String(form.get("clientName") || "Cliente de teste"));
+  const clientName = safeName(String(form.get("clientName") || "Cliente"));
   if (!(file instanceof File) || !file.size) return Response.json({ error: "Selecione um arquivo." }, { status: 400 });
   if (!allowedTypes.has(file.type)) return Response.json({ error: "Envie somente PDF, JPG ou PNG." }, { status: 400 });
   if (file.size > 10 * 1024 * 1024) return Response.json({ error: "O arquivo excede o limite de 10 MB." }, { status: 400 });

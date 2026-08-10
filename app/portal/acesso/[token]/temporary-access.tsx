@@ -49,5 +49,5 @@ export default function TemporaryAccess({ token }: { token: string }) {
       <button className="access-complete" onClick={complete} disabled={busy || !data.documents?.length || data.documents.some(document => !Number(document.file_count))}>Concluir envio</button>
       <p className="access-expiry">Link válido até {new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeStyle: "short" }).format(new Date(data.request.expiresAt))}.</p>
     </>}
-  </section><footer>Junqueira de Miranda Advocacia · Ambiente de teste</footer></main>;
+  </section><footer>Junqueira de Miranda Advocacia</footer></main>;
 }

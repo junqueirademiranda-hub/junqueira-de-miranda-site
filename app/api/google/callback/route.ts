@@ -39,18 +39,18 @@ export async function GET(request: Request) {
   });
   const token = await tokenResponse.json() as { access_token?: string; refresh_token?: string; error_description?: string };
   if (!tokenResponse.ok || !token.access_token || !token.refresh_token) return new Response(token.error_description || "Não foi possível concluir a autorização.", { status: 400 });
-  const query = encodeURIComponent("name='PORTAL_CLIENTES_TESTE' and mimeType='application/vnd.google-apps.folder' and trashed=false");
+  const query = encodeURIComponent("name='PORTAL_CLIENTES' and mimeType='application/vnd.google-apps.folder' and trashed=false");
   const existingResponse = await fetch(`https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id)&pageSize=1`, { headers: { authorization: `Bearer ${token.access_token}` } });
   const existing = await existingResponse.json() as { files?: Array<{id:string}> };
   let folderId = existing.files?.[0]?.id;
   if (!folderId) {
-    const folderResponse = await fetch("https://www.googleapis.com/drive/v3/files?fields=id", { method: "POST", headers: { authorization: `Bearer ${token.access_token}`, "content-type": "application/json" }, body: JSON.stringify({ name: "PORTAL_CLIENTES_TESTE", mimeType: "application/vnd.google-apps.folder" }) });
+    const folderResponse = await fetch("https://www.googleapis.com/drive/v3/files?fields=id", { method: "POST", headers: { authorization: `Bearer ${token.access_token}`, "content-type": "application/json" }, body: JSON.stringify({ name: "PORTAL_CLIENTES", mimeType: "application/vnd.google-apps.folder" }) });
     const folder = await folderResponse.json() as { id?: string };
     folderId = folder.id;
   }
   const userResponse = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", { headers: { authorization: `Bearer ${token.access_token}` } });
   const user = await userResponse.json() as { email?: string };
-  if (!folderId) return new Response("O Google autorizou, mas a pasta de teste não pôde ser localizada.", { status: 400 });
+  if (!folderId) return new Response("O Google autorizou, mas a pasta de clientes não pôde ser localizada.", { status: 400 });
   await database.prepare(`UPDATE google_drive_config SET refresh_token_encrypted=?, root_folder_id=?, connected_email=?, updated_at=? WHERE id=1`)
     .bind(await encrypt(token.refresh_token), folderId, user.email || "Conta Google autorizada", new Date().toISOString()).run();
   return Response.redirect(new URL("/portal/admin?drive=connected", request.url).toString(), 302);
