@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { sites } from "./build/sites-vite-plugin";
 
-const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
+const D1_DATABASE_ID =
   "88de487d-7ef8-450e-9291-5f5c65aa4749";
 
 const { d1, r2 } = hostingConfig;
@@ -19,7 +19,7 @@ const localBindingConfig = {
         {
           binding: d1,
           database_name: "junqueira-portal-db",
-          database_id: SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
+          database_id: D1_DATABASE_ID,
         },
       ]
     : [],
