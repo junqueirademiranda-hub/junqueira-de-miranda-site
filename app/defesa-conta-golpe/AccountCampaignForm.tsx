@@ -3,7 +3,7 @@
 import { FormEvent, useRef, useState } from "react";
 
 const whatsappNumber = "5565996038916";
-const spreadsheetEndpoint = "https://script.google.com/macros/s/AKfycbzx8Zca5tsC8up5el7naXZUTWsMOjkRLyntFHmyyEyfiNwQoOdCO3YJn0Wc-9_Q_XD1/exec";
+const spreadsheetEndpoint = "https://script.google.com/macros/s/AKfycbzRNXpJMI9BlIHrsz10xVGA9KoALeEIr_yZjq895ioCQgd6Df2QF5_z2TTw5oNvAwYa/exec";
 const analyticsDestination = "G-39N6Z3SMD7";
 const campaignSource = "campanha-defesa-conta-golpe-v2";
 const contactArea = "Defesa criminal — conta utilizada em golpe";
