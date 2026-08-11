@@ -1,9 +1,25 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 const whatsappNumber = "5565996038916";
 const spreadsheetEndpoint = "https://script.google.com/macros/s/AKfycbzx8Zca5tsC8up5el7naXZUTWsMOjkRLyntFHmyyEyfiNwQoOdCO3YJn0Wc-9_Q_XD1/exec";
+const analyticsDestination = "G-39N6Z3SMD7";
+const campaignSource = "campanha-defesa-conta-golpe-v2";
+const contactArea = "Defesa criminal — conta utilizada em golpe";
+
+type AnalyticsWindow = Window & { gtag?: (...args: unknown[]) => void };
+
+function trackEvent(eventName: string, parameters: Record<string, unknown> = {}) {
+  const gtag = (window as AnalyticsWindow).gtag;
+  gtag?.("event", eventName, {
+    send_to: analyticsDestination,
+    contact_area: contactArea,
+    contact_source: campaignSource,
+    transport_type: "beacon",
+    ...parameters,
+  });
+}
 
 export default function AccountCampaignForm() {
   const [name, setName] = useState("");
@@ -16,6 +32,13 @@ export default function AccountCampaignForm() {
   const [consent, setConsent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const formStarted = useRef(false);
+
+  function registerFormStart() {
+    if (formStarted.current) return;
+    formStarted.current = true;
+    trackEvent("form_start", { form_name: campaignSource });
+  }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -43,11 +66,11 @@ export default function AccountCampaignForm() {
         whatsapp: phone.trim(),
         cidade: city,
         fase: stage,
-        prazo: knowledge,
-        dataPrazo: deadline,
-        finalidade: deadline === "Sim" ? deadlineDate : "",
+        prazo: deadline,
+        dataPrazo: deadline === "Sim" ? deadlineDate : "",
+        finalidade: knowledge,
         relato: "",
-        origem: "campanha-defesa-conta-golpe-v2",
+        origem: campaignSource,
         pagina: window.location.href,
         website: "",
       });
@@ -59,13 +82,13 @@ export default function AccountCampaignForm() {
         body: payload.toString(),
       });
 
-      const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
-      gtag?.("event", "generate_lead", {
-        send_to: "G-39N6Z3SMD7",
+      trackEvent("generate_lead", {
+        method: "form",
+        form_name: campaignSource,
+      });
+      trackEvent("whatsapp_open", {
         method: "whatsapp",
-        contact_area: "Defesa criminal — conta utilizada em golpe",
-        contact_source: "campanha-defesa-conta-golpe-v2",
-        transport_type: "beacon",
+        form_name: campaignSource,
       });
 
       window.location.href = whatsappUrl;
@@ -76,7 +99,7 @@ export default function AccountCampaignForm() {
   }
 
   return (
-    <form className="fraud-screening-form" onSubmit={submit}>
+    <form className="fraud-screening-form" onSubmit={submit} onFocusCapture={registerFormStart}>
       <div className="screening-field-row">
         <label>Nome<input value={name} onChange={(event) => setName(event.target.value)} required placeholder="Digite seu nome" /></label>
         <label>WhatsApp<input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} required placeholder="(65) 99999-9999" /></label>
